@@ -8,8 +8,6 @@ public class ImageForHWP {
 
     private String imgExt;
 
-    private String binDataName;
-
     public long getInstanceId() {
         return instanceId;
     }
@@ -32,13 +30,5 @@ public class ImageForHWP {
 
     public void setImgExt(String imgExt) {
         this.imgExt = imgExt;
-    }
-
-    public String getBinDataName() {
-        return binDataName;
-    }
-
-    public void setBinDataName(int streamIndex) {
-        this.binDataName = "Bin" + String.format("%04X", streamIndex) + "." + imgExt;
     }
 }

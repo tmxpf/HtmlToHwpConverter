@@ -26,4 +26,8 @@ public class ImageUtil {
         return instanceId;
     }
 
+    public static String getStreamName(int streamIndex, String imageExt) {
+        return "Bin" + String.format("%04X", streamIndex) + "." + imageExt;
+    }
+
 }
