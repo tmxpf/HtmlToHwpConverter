@@ -32,8 +32,8 @@ public class ImageForHWP {
     }
     
     public BufferedImage getImageInfo() {
-		return imageInfo;
-	}
+	return imageInfo;
+    }
 
     public void setImageInfo(BufferedImage imageInfo) {
 	this.imageInfo = imageInfo;
