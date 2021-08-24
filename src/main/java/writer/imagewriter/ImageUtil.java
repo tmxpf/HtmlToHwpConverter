@@ -1,4 +1,4 @@
-package modules;
+package writer.imagewriter;
 
 import java.util.HashSet;
 import java.util.Random;

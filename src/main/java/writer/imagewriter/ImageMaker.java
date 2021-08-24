@@ -1,4 +1,4 @@
-package modules;
+package writer.imagewriter;
 
 import kr.dogfoot.hwplib.object.HWPFile;
 import kr.dogfoot.hwplib.object.bodytext.Section;
@@ -21,7 +21,9 @@ import kr.dogfoot.hwplib.object.docinfo.borderfill.fillinfo.ImageFill;
 import kr.dogfoot.hwplib.object.docinfo.borderfill.fillinfo.ImageFillType;
 import kr.dogfoot.hwplib.object.docinfo.borderfill.fillinfo.PictureEffect;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class ImageMaker {
@@ -33,7 +35,7 @@ public class ImageMaker {
     private int binDataID;
 
     private ControlRectangle rectangle;
-    private Rectangle shapePosition = new Rectangle(25, 25, 100, 100);
+    private Rectangle shapePosition = new Rectangle(0, 25, 100, 100);
 
     public ImageMaker() {
     }
@@ -85,7 +87,6 @@ public class ImageMaker {
         streamIndex = hwpFile.getBinData().getEmbeddedBinaryDataList().size() + 1;
         String streamName = ImageUtil.getStreamName(streamIndex, imgObj.getImgExt());
         hwpFile.getBinData().addNewEmbeddedBinaryData(streamName, imgObj.getBytes(), compressMethod);
-        binDataID = addBinDataInDocInfo(streamIndex);
     }
 
     private int addBinDataInDocInfo(int streamIndex) {

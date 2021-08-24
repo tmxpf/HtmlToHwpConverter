@@ -1,4 +1,6 @@
-package modules;
+package writer.imagewriter;
+
+import java.awt.image.BufferedImage;
 
 public class ImageForHWP {
 
