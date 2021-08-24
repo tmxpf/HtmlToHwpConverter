@@ -45,5 +45,7 @@ public class Main {
 
             HWPWriter.toFile(hwpFile, writePath);
         }
+        
+        System.out.println("파일 생성 끝.");
     }
 }
