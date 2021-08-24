@@ -26,18 +26,61 @@ import java.io.*;
 
 public class ImageMaker {
 
+	private final BinDataCompress compressMethod = BinDataCompress.ByStroageDefault;
     private int streamIndex;
-    private BinDataCompress compressMethod = BinDataCompress.ByStroageDefault;
     private HWPFile hwpFile;
     private ImageForHWP imgObj;
     private int binDataID;
 
     private ControlRectangle rectangle;
-    private Rectangle shapePosition = new Rectangle(50, 50, 100, 100);
+    private Rectangle shapePosition = new Rectangle(25, 25, 100, 100);
 
     public ImageMaker() {
     }
 
+    public void insertImageToHwp(HWPFile hwpFile, ImageForHWP imgObj) {
+        this.hwpFile = hwpFile;
+        this.imgObj = imgObj;
+
+        addBinData();
+        binDataID = addBinDataInDocInfo(streamIndex);
+        addGsoControl();
+    }
+
+    public ImageForHWP loadImage(String filePath) {
+        ImageForHWP imageForHWP = new ImageForHWP();
+        String ext = filePath.substring(filePath.lastIndexOf(".") + 1);
+        File file = new File(filePath);
+        InputStream ios = null;
+
+        if(file.exists() && file.isFile()) {
+            try {
+                byte[] buffer = new byte[(int) file.length()];
+                ios = new FileInputStream(file);
+                ios.read(buffer);
+
+                BufferedImage bi = ImageIO.read(file);
+                
+                imageForHWP.setBytes(buffer);
+                imageForHWP.setImgExt(ext);
+                imageForHWP.setInstanceId(ImageUtil.getInstanceId());
+                imageForHWP.setImageInfo(bi);
+
+            } catch (IOException ioException) {
+
+            } finally {
+                try {
+                    if (ios != null)
+                        ios.close();
+                } catch (IOException ioException2) {
+
+                }
+            }
+        }
+
+        return imageForHWP;
+    }
+    
     private void addBinData() {
         streamIndex = hwpFile.getBinData().getEmbeddedBinaryDataList().size() + 1;
         String streamName = ImageUtil.getStreamName(streamIndex, imgObj.getImgExt());
@@ -178,45 +221,5 @@ public class ImageMaker {
         scr.setY3(fromMM(shapePosition.height));
         scr.setX4(0);
         scr.setY4(fromMM(shapePosition.height));
-    }
-
-    public void insertImageToHwp(HWPFile hwpFile, ImageForHWP imgObj) {
-        this.hwpFile = hwpFile;
-        this.imgObj = imgObj;
-
-        addBinData();
-        binDataID = addBinDataInDocInfo(streamIndex);
-        addGsoControl();
-    }
-
-    public ImageForHWP loadImage(String filePath) {
-        ImageForHWP imageForHWP = new ImageForHWP();
-        String ext = filePath.substring(filePath.lastIndexOf(".") + 1);
-        File file = new File(filePath);
-        InputStream ios = null;
-
-        if(file.exists() && file.isFile()) {
-            try {
-                byte[] buffer = new byte[(int) file.length()];
-                ios = new FileInputStream(file);
-                ios.read(buffer);
-
-                imageForHWP.setBytes(buffer);
-                imageForHWP.setImgExt(ext);
-                imageForHWP.setInstanceId(ImageUtil.getInstanceId());
-
-            } catch (IOException ioException) {
-
-            } finally {
-                try {
-                    if (ios != null)
-                        ios.close();
-                } catch (IOException ioException2) {
-
-                }
-            }
-        }
-
-        return imageForHWP;
     }
 }
