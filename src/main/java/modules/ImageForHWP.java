@@ -3,10 +3,9 @@ package modules;
 public class ImageForHWP {
 
     private long instanceId;
-
     private byte[] bytes;
-
     private String imgExt;
+    private BufferedImage imageInfo;
 
     public long getInstanceId() {
         return instanceId;
@@ -31,4 +30,12 @@ public class ImageForHWP {
     public void setImgExt(String imgExt) {
         this.imgExt = imgExt;
     }
+    
+    public BufferedImage getImageInfo() {
+		return imageInfo;
+	}
+
+	public void setImageInfo(BufferedImage imageInfo) {
+		this.imageInfo = imageInfo;
+	}
 }
