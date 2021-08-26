@@ -150,5 +150,12 @@ scr.setX4(0);
 scr.setY4(fromMM(shapePosition.height));
 ```
 
-
+## 텍스트 삽입로직
+1. 텍스트 글꼴 설정
+2. 텍스트 글자 모양 설정
+3. BodyText -> Section -> Paragraph(문단)가져와서 `ParaHeader`입력
+4. `ParaText`입력
+5. `ParaCharShape(글자 모양)`입력
+6. `ParaLineSeg(문단 레이아웃)`입력
+7. `LineSegItem(각 중의 align 정보에 대한 객체)`입력
 
