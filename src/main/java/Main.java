@@ -1,7 +1,4 @@
-import kr.dogfoot.hwplib.object.HWPFile;
-import kr.dogfoot.hwplib.reader.HWPReader;
-import kr.dogfoot.hwplib.writer.HWPWriter;
-import writer.textwriter.TextMaker;
+
 
 public class Main {
 
@@ -10,16 +7,11 @@ public class Main {
         //이미지 삽입예제
 //        InsertImage.insertImageToHWP();
 
-        String filename = "C:/Users/Gyu/Downloads/테스트용 한글파일/실전 테스트/blank.hwp";
-        HWPFile hwpFile = HWPReader.fromFile(filename);
-        String writePath = "C:/Users/Gyu/Downloads/테스트용 한글파일/실전 테스트/result-making-blankfile.hwp";
+        //텍스트 삽입예제
+//        InsertText.insertImageToHWP();
 
-        if (hwpFile != null) {
-            TextMaker tmcs = new TextMaker();
-            tmcs.test(hwpFile);
-
-            HWPWriter.toFile(hwpFile, writePath);
-        }
+        //테이블 삽입예제
+//        InsertTable.insertTableToHWP();
 
         System.out.println("파일 생성 끝.");
     }
