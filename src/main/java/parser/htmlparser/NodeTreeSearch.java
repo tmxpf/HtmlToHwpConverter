@@ -2,6 +2,8 @@ package parser.htmlparser;
 
 import kr.dogfoot.hwplib.object.HWPFile;
 import maker.HwpContentMaker;
+import maker.object.TagGroup;
+import maker.object.TagOptions;
 import maker.tagmaker.TagMaker;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeVisitor;
@@ -23,10 +25,24 @@ public class NodeTreeSearch implements NodeVisitor{
 		// 4. hwp bodyText에 실제 값 적용
 
 		String nodeName = node.nodeName();
+		TagOptions tagOptions = new TagOptions(node.clone());
 
-		if(depth == 0 && "p".equals(nodeName)) {
-			hwpContentMaker = new TagMaker(hwpFile, node);
-			hwpContentMaker.make();
+		switch(nodeName) {
+			case TagGroup.P : {
+				hwpContentMaker = new TagMaker(hwpFile, tagOptions);
+				break;
+			}
+			case TagGroup.FONT : {
+
+				break;
+			}
+			case TagGroup.DIV : {
+
+				break;
+			}
+			default : {
+				hwpContentMaker.make();
+			}
 		}
 
 		node.attributes();
