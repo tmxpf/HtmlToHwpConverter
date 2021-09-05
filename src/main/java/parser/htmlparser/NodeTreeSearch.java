@@ -33,6 +33,10 @@ public class NodeTreeSearch implements NodeVisitor{
 				break;
 			}
 			case TagGroup.FONT : {
+				hwpContentMaker = new TagMaker(hwpFile, tagOptions);
+				break;
+			}
+			case TagGroup.TEXT : {
 
 				break;
 			}
