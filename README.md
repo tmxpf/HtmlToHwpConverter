@@ -1,6 +1,3 @@
-### information about vue.js
-1. https://www.youtube.com/watch?v=oWT7LXSMsiQ (전자정부프레임워크 4.0 react 실행방법)
-
 ## 폴더 구조
  - root Storage
    - BinData
